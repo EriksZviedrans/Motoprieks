@@ -1,0 +1,10 @@
+
+<h2><%= @image.filename %><div id="date"><%= @image.created_at.strftime("%m/%d/%Y") %></div></h2>
+
+<p><%= raw image_tag("/code_image/#{@image.id}", :alt => "Image", :size => "160x160") %></p>
+<p><p><%= @image.description %></p>
+
+
+<br />
+
+<%= link_to 'Back', :back %> | <%= link_to 'Admin Panel', posts_path %>

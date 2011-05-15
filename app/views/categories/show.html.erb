@@ -1,0 +1,10 @@
+<%= link_to :action => "show", :id => @category.id do %>
+        <%= @category.name %>(<%= @category.posts.count %>)
+        <% end %>
+| <%= link_to "Edit", :action => "edit", :id => @category.id  -%>
+<ul>
+<% @category.posts.each do |c| %>
+<li><%= link_to c.title, :controller => "posts", :action => 'show', :id => c.id -%></li>
+<% end %>
+</ul>
+<%= link_to 'Back', :back %> | <%= link_to 'Admin Panel', posts_path %>

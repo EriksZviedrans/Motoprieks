@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Motoprieks</title>
+  <%= stylesheet_link_tag 'style' %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  <%= include_tiny_mce_if_needed %>
+</head>
+<body>
+<div id="container">
+<div id="headercont">
+    <div id="headerleft">
+    <%= link_to(mains_path) do %>
+      <h1>Moto.<span>Prieks.</span></h1>
+    <% end %>
+		</div>
+		<div id="headerright">
+		  <ul>
+		      <% if admin_user %>
+            Logged in as<li><%= link_to current_user.login, current_user.website %></li>.<li>|</li>
+            <li><%= link_to "Log out", log_out_path %></li><li>|</li>
+            <li><%= link_to "Admin panels", posts_path %></li>
+          <% elsif editor_user %>
+            Logged in as<li><%= link_to current_user.login, current_user.website %></li>.<li>|</li>
+            <li><%= link_to "Log out", log_out_path %></li><li>|</li>
+            <li><%= link_to "Editor panels", posts_path %></li>
+          <% elsif current_user %>
+            Logged in as<li><%= link_to current_user.login, current_user.website %></li>.<li>|</li>
+            <li><%= link_to "Log out", log_out_path %></li>
+          <% else %>
+            <li><%= link_to "Sign up", sign_up_path %></li><li>|</li>
+            <li><%= link_to "Log in", log_in_path %></li>
+          <% end %>
+		  </ul>
+		</div>
+</div>
+<% flash.each do |name, msg|%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+    <div id="maincont">
+     <%= yield %>
+		<div id="bottom"></div>
+    </div>  
+    
+    
+    <div id="footercont">
+		<div id="footerleft">
+			<p><a title="back to top" href="#container"><strong>^ back to top</strong></a></p>
+		</div>
+		<div id="footerright">
+			<p><a title="derby web design" href="http://www.tristarwebdesign.co.uk">template by <strong>tristar</strong></a></p>
+		</div>
+	  </div>
+  
+</div>
+</body>
+</html>

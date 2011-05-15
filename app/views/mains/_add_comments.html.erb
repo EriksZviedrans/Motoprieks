@@ -1,0 +1,16 @@
+<% if current_user %>
+<h2>Add a comment:</h2>
+<%= form_for([@main, @main.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.text_area :body, :cols => 80, :rows => 5 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% else %>
+  <p>
+    <b>Please, <%= link_to "sign up", sign_up_path %> or <%= link_to "log in!", log_in_path %></b>
+  </p>
+<% end%>

@@ -1,0 +1,39 @@
+<div id="mainleft">
+<h2>Sign Up</h2>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  <%= f.label :login %><br>
+  <%= f.text_field :login %>
+  </div>
+  <div class="field">
+  <%= f.label :mail %><br>
+  <%= f.text_field :mail %>
+  </div>
+  <div class="field">
+  <%= f.label :password %><br>
+  <%= f.password_field :password %>
+  </div>
+  <div class="field"> 
+  <%= f.label :password_confirmation %><br>
+  <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+  <%= f.label :website %><br>
+  <%= f.text_field :website, :value => 'http://www.'  %>
+  </div>
+  <div class="action"><%= f.submit %></div>
+<% end %>
+<%= link_to "Back", :back %> | <%= link_to 'Admin Panel', posts_path if editor_user || admin_user %>
+</div>
+
+<%= render 'mains/category' %> 

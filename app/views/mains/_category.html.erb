@@ -1,0 +1,11 @@
+<div id="mainright">
+<%  Category.all.each do |category| %>
+<h2>
+    <% link_to  :controller => 'mains', :action => 'index', :category_id => category.id do %>
+      <%= category.name %>(<%= category.posts.count %>)
+    <% end %>
+</h2>
+<% end %>
+</div>
+
+

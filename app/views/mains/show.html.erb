@@ -1,0 +1,15 @@
+<div id="mainleft">
+<h2><%= @main.title %></h2>
+
+<p><div id="image"><%= raw image_tag("/code_image/#{@main.image_id}", :alt => @main.image.description, :size => "150x150") %></div><%= raw @main.body %></p>
+    <p><b>Author: </b><%= link_to @main.user.login, @main.user.website %>&nbsp;|
+      <b>Category: </b> 
+      
+      <%= link_to(:controller => 'mains', :action => 'index', :category_id => @main.category.id) do %>
+        <%= @main.category.name %>
+      <% end %></p>
+<%= render 'comments' %>  
+<%= render 'add_comments' %>
+</div>
+<%= render 'category' %> 
+

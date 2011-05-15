@@ -1,0 +1,59 @@
+<table border="1" width="800">
+    <tr>
+      <th>Listing posts</th>
+      <th>Category list</th>
+      <th>Users list</th>
+      <th>Images</th>
+    </tr>
+<tr>
+    <td rowspan="2" width="400" >
+          <table>
+          
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Created at</th>
+              <th><%= label_tag :edit if editor_user || admin_user %></th>
+              <th><%= label_tag :destroy if admin_user %></th>
+            </tr>
+
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.title, post %></td>
+              <td><%= post.user.login %></td>
+              <td><%= post.created_at.strftime("%B %d %Y") %></td>
+              <td><%= link_to 'Edit', edit_post_path(post) if editor_user || admin_user %></td>
+              <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete if admin_user %></td>
+            </tr>
+          <% end %>
+          
+          </table>
+          <%= link_to 'New Post', new_post_path if editor_user || admin_user %>
+     </td>
+    <td width="200">
+          <ul id="category_list">
+              <% Category.all.each do |c| %>
+                <li><%= link_to c.name, categories_path %></li>
+              <% end %>
+          </ul>
+          <%= link_to 'New Category', new_category_path if editor_user || admin_user %>
+    </td>
+    <td width="200">
+      <ul id="category_list">
+        <% User.all.each do |u| %>
+          <li><%= link_to u.login, users_path %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'New User', new_user_path if editor_user || admin_user %>
+    </td>
+    <td width="200">
+      <ul id="category_list">
+        <% Image.all.each do |i| %>
+          <li><%= link_to i.filename, images_path %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'New Image', new_image_path if editor_user || admin_user %> 
+    </td>
+</tr>
+</table>
+<br>

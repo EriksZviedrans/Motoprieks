@@ -1,0 +1,9 @@
+<b>Comments(<%= @main.comments.count %>)</b>
+  <% @main.comments.each do |comment| %>
+      <p>
+        <b>Commenter: </b><%= link_to (User.find(comment.user_id)).login, (User.find(comment.user_id)).website %><br>
+      <fieldset id="el02">
+          <%= comment.body %>
+      </fieldset>
+      </p>
+<% end %>

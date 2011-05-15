@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Created at</th>
+    <th><%= label_tag :edit if editor_user || admin_user %></th>
+    <th><%= label_tag :destroy if admin_user %></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= link_to :action => "show", :id => category.id do %>
+        <%= category.name %>(<%= category.posts.count %>)
+        <% end %>
+    </td>
+    <td><%= category.created_at.strftime("%B %d %Y") %></td>
+    <td><%= link_to 'Edit', {:action => "edit", :id => category.id } if editor_user || admin_user %></td>
+    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete if admin_user %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to "Back", :back %> | <%= link_to 'New Category', new_category_path %> | <%= link_to 'Admin Panel', posts_path %>

@@ -1,0 +1,20 @@
+<table>
+<tr>
+    <th>Login</th>
+    <th>Created at</th>
+    <th><%= label_tag :edit if admin_user %></th>
+    <th><%= label_tag :destroy if admin_user%></th>
+</tr>
+<% @users.each do |u| %>
+<ul id="category_list">
+  <tr>
+    <td><%= link_to u.login, u.website %></td>
+    <td><%= u.created_at.strftime("%B %d %Y") %></td>
+    <td><%= link_to 'Edit', edit_user_path(u) if admin_user %></td>
+    <td><%= link_to 'Destroy', u, :confirm => 'Are you sure?', :method => :delete if admin_user %></td>
+  </tr>
+  </ul>
+<% end %>
+</table>
+<br />
+<%= link_to 'New User', new_user_path %> | <%= link_to 'Admin Panel', posts_path %>

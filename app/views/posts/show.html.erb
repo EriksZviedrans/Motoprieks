@@ -1,0 +1,47 @@
+<p>
+  <b>Category:</b>
+  <%= @post.category.name %>
+</p>
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+<p>
+  <b>Image:</b>
+  <%= raw image_tag("/code_image/#{@post.image_id}", :alt => @post.image.description ) %>
+</p>
+<p>
+  <b>Body:</b>
+  <%= raw @post.body %>
+</p>
+<strong>Category: </strong> <%= link_to @post.category.name, :action => "admin_category", :id => @post.category.id %><br />
+
+<p>
+  <b>Author:</b>
+  <%= @post.user.login %>
+</p>
+<%= link_to 'Back', :back %> | <%= link_to 'Admin Panel', posts_path %>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <b>Commenter:</b>
+    <%= link_to @post.user.login, @post.user.website %>
+  </p>
+  <p>
+    <b>Comment:</b>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

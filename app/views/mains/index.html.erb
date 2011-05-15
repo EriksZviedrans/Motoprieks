@@ -1,0 +1,19 @@
+<div id="mainleft">
+<% @mains.each do |main| %>
+
+      <%= link_to(:controller => 'mains', :action => 'show', :id => main) do %>
+          <h2><%= main.title %><div id="date"><%= main.created_at.strftime("%m/%d/%Y") %></div></h2>
+      <% end %>
+      <p><div id="image"><%= raw image_tag("/code_image/#{main.image_id}", :alt => main.image.description, :size => "100x100") %></div>
+      <%= raw main.body %></p>
+      <p><b>Author: </b><%= link_to main.user.login, main.user.website %>&nbsp;|
+      <b>Category: </b> 
+      
+      <%= link_to(:controller => 'mains', :action => 'index', :category_id => main.category.id) do %>
+        <%= main.category.name%>
+      <% end %>&nbsp;|
+      <b>Comments count(<%= main.comments.count %>)</b></p><br />
+<% end %>
+<%= will_paginate (@mains) %>
+</div>
+<%= render 'category' %>  

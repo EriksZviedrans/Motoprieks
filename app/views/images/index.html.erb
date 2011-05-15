@@ -1,0 +1,16 @@
+
+
+<% @images.each do |image| %>
+
+<%= link_to(image) do %>
+          <h2><%= image.filename %><div id="date"><%= image.created_at.strftime("%m/%d/%Y") %></div></h2>
+      <% end %>
+<p><%= raw image_tag("/code_image/#{image.id}", :alt => "Image", :size => "160x160") %></p>
+<p><%= image.description %></p>
+<p><%= link_to 'Edit',edit_image_path(image) if editor_user || admin_user %> |
+<%= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete if admin_user %></p>
+<% end %>
+
+<br />
+<%= link_to "Back", :back %> | <%= link_to 'New Image', new_image_path %> | <%= link_to 'Admin Panel', posts_path %>
+
