@@ -7,4 +7,7 @@ http://motoprieks.heroku.com/
 Lai iegūtu datus, izmantojiet XML.
 Piemēram:
 
+http://motoprieks.heroku.com/mains/1.xml
 
+Vienkārši pie katra raksta(vietnes lapas) beigās pievienojam .xml paplašinājumu.
+Ja ir kādi jautājumi, tad rakstiet uz epastu: eriks.zviedrans@gmail.com
