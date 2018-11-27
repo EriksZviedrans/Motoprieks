@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', "~> 3.0.11"
 
 gem 'pg'
 gem "mongrel", ">= 1.2.0.pre2"
